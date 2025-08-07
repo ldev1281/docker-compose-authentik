@@ -120,6 +120,7 @@ services:
 
     networks:
       - authentik-private
+      - proxy-client-authentik
 
 networks:
 
