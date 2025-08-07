@@ -54,14 +54,17 @@ prompt_for_configuration() {
     echo ""
     echo "smtp:"
 
-    read -p "AUTHENTIK_EMAIL__HOST [${AUTHENTIK_EMAIL__HOST:-localhost}]: " input
-    AUTHENTIK_EMAIL__HOST=${input:-${AUTHENTIK_EMAIL__HOST:-localhost}}
+    read -p "AUTHENTIK_EMAIL__HOST [${AUTHENTIK_EMAIL__HOST:-smtp.mailgun.org}]: " input
+    AUTHENTIK_EMAIL__HOST=${input:-${AUTHENTIK_EMAIL__HOST:-smtp.mailgun.org}}
 
-    read -p "AUTHENTIK_EMAIL__PORT [${AUTHENTIK_EMAIL__PORT:-25}]: " input
-    AUTHENTIK_EMAIL__PORT=${input:-${AUTHENTIK_EMAIL__PORT:-25}}
+    read -p "AUTHENTIK_EMAIL__PORT [${AUTHENTIK_EMAIL__PORT:-587}]: " input
+    AUTHENTIK_EMAIL__PORT=${input:-${AUTHENTIK_EMAIL__PORT:-587}}
 
-    read -p "AUTHENTIK_EMAIL__USERNAME [${AUTHENTIK_EMAIL__USERNAME:-}]: " input
-    AUTHENTIK_EMAIL__USERNAME=${input:-${AUTHENTIK_EMAIL__USERNAME:-}}
+    read -p "AUTHENTIK_EMAIL__USERNAME [${AUTHENTIK_EMAIL__USERNAME:-postmaster@sandbox123.mailgun.org}]: " input
+    AUTHENTIK_EMAIL__USERNAME=${input:-${AUTHENTIK_EMAIL__USERNAME:-postmaster@sandbox123.mailgun.org}}
+
+    read -p "AUTHENTIK_EMAIL__FROM [${AUTHENTIK_EMAIL__FROM:-authentik@sandbox123.mailgun.org}]: " input
+    AUTHENTIK_EMAIL__FROM=${input:-${AUTHENTIK_EMAIL__FROM:-authentik@sandbox123.mailgun.org}}    
 
     read -p "AUTHENTIK_EMAIL__PASSWORD [${AUTHENTIK_EMAIL__PASSWORD:-example}]: " input
     AUTHENTIK_EMAIL__PASSWORD=${input:-${AUTHENTIK_EMAIL__PASSWORD:-example}}
@@ -69,14 +72,12 @@ prompt_for_configuration() {
     read -p "AUTHENTIK_EMAIL__USE_TLS [${AUTHENTIK_EMAIL__USE_TLS:-true}]: " input
     AUTHENTIK_EMAIL__USE_TLS=${input:-${AUTHENTIK_EMAIL__USE_TLS:-true}}
 
-    read -p "AUTHENTIK_EMAIL__USE_SSL [${AUTHENTIK_EMAIL__USE_SSL:-true}]: " input
-    AUTHENTIK_EMAIL__USE_SSL=${input:-${AUTHENTIK_EMAIL__USE_SSL:-true}}
+    read -p "AUTHENTIK_EMAIL__USE_SSL [${AUTHENTIK_EMAIL__USE_SSL:-false}]: " input
+    AUTHENTIK_EMAIL__USE_SSL=${input:-${AUTHENTIK_EMAIL__USE_SSL:-false}}
 
     read -p "AUTHENTIK_EMAIL__TIMEOUT [${AUTHENTIK_EMAIL__TIMEOUT:-10}]: " input
     AUTHENTIK_EMAIL__TIMEOUT=${input:-${AUTHENTIK_EMAIL__TIMEOUT:-10}}
 
-    read -p "AUTHENTIK_EMAIL__FROM [${AUTHENTIK_EMAIL__FROM:-authentik@localhost}]: " input
-    AUTHENTIK_EMAIL__FROM=${input:-${AUTHENTIK_EMAIL__FROM:-authentik@localhost}}
 }
 
 # Display and confirm configuration
