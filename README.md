@@ -85,6 +85,7 @@ docker ps
 ```
 
 You should see the authentik-app container running.
+To start the initial setup, navigate to https://<your server's IP or hostname>/if/flow/initial-setup/
 
 ### 6. Persistent Data Storage
 
