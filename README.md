@@ -131,9 +131,13 @@ Paste the following contents:
 CMD_BEFORE_BACKUP="docker compose --project-directory /docker/authentik down"
 CMD_AFTER_BACKUP="docker compose --project-directory /docker/authentik up -d"
 
+CMD_AFTER_RESTORE=(
+"docker network create --driver bridge proxy-client-authentik || true"
+"docker compose --project-directory /docker/authentik restart"
+)
+
 INCLUDE_PATHS=(
-  "/docker/authentik/.env"
-  "/docker/authentik/vol"
+  "/docker/authentik
 )
 ```
 
