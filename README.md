@@ -137,7 +137,7 @@ CMD_AFTER_RESTORE=(
 )
 
 INCLUDE_PATHS=(
-  "/docker/authentik
+  "/docker/authentik"
 )
 ```
 
