@@ -133,7 +133,7 @@ CMD_AFTER_BACKUP="docker compose --project-directory /docker/authentik up -d"
 
 CMD_AFTER_RESTORE=(
 "docker network create --driver bridge proxy-client-authentik || true"
-"docker compose --project-directory /docker/authentik restart"
+"docker compose --project-directory /docker/authentik up -d"
 )
 
 INCLUDE_PATHS=(
