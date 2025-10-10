@@ -8,7 +8,7 @@ set -euo pipefail
 # Get absolute path of script directory
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ENV_FILE="${SCRIPT_DIR}/../.env"
-VOL_DIR="${SCRIPT_DIR}/../vol/"
+VOL_DIR="${SCRIPT_DIR}/../vol"
 
 AUTHENTIK_POSTGRES_VERSION=16-alpine
 AUTHENTIK_IMAGE=ghcr.io/goauthentik/server
