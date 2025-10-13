@@ -12,7 +12,7 @@ VOL_DIR="${SCRIPT_DIR}/../vol"
 
 AUTHENTIK_POSTGRES_VERSION=16-alpine
 AUTHENTIK_IMAGE=ghcr.io/goauthentik/server
-AUTHENTIK_TAG=2025.6.4
+CURRENT_AUTHENTIK_TAG=2025.8.4
 
 # Generate secure random defaults
 generate_defaults() {
@@ -50,7 +50,7 @@ prompt_for_configuration() {
     if [[ -n "$input" ]]; then
         AUTHENTIK_SECRET_KEY="$input"
     fi
-
+    AUTHENTIK_TAG=${CURRENT_AUTHENTIK_TAG}
     echo ""
     echo "smtp:"
 
