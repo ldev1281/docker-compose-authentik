@@ -45,7 +45,7 @@ create_networks() {
             echo "Required network already exists: $net"
         else
             echo "Creating required docker network: $net (driver=bridge)"
-            docker network create --driver bridge "$net" >/dev/null
+            docker network create --driver bridge --internal "$net" >/dev/null
         fi
     done
 }
