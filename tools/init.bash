@@ -165,10 +165,11 @@ confirm_and_save_configuration() {
 
     read -p "Proceed with this configuration? (y/n): " CONFIRM
     echo ""
-    if [[ "$CONFIRM" != "y" ]]; then
-        echo "Configuration aborted by user."
-        exit 1
-    fi
+    while :; do
+        read -p "Proceed with this configuration? (y/n): " CONFIRM
+        [[ "$CONFIRM" == "y" ]] && break
+        [[ "$CONFIRM" == "n" ]] && echo "Configuration aborted by user." && exit 1
+    done
 
     printf "%s\n" "${CONFIG_LINES[@]}" > "$ENV_FILE"
     echo ".env file saved to $ENV_FILE"
