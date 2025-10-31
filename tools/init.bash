@@ -162,9 +162,6 @@ confirm_and_save_configuration() {
     for line in "${CONFIG_LINES[@]}"; do echo "$line"; done
     echo "-----------------------------------------------------"
     echo ""
-
-    read -p "Proceed with this configuration? (y/n): " CONFIRM
-    echo ""
     while :; do
         read -p "Proceed with this configuration? (y/n): " CONFIRM
         [[ "$CONFIRM" == "y" ]] && break
