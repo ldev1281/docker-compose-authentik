@@ -44,7 +44,7 @@ services:
 
 
   authentik-app:
-    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG}
+    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_VERSION}
     container_name: authentik-app
     restart: unless-stopped
 
@@ -84,7 +84,7 @@ services:
 
 
   authentik-worker:
-    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG}
+    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_VERSION}
     container_name: authentik-worker
     restart: unless-stopped
 
