@@ -18,7 +18,7 @@ BACKUP_TASKS="10-authentik.conf.bash"
 
 AUTHENTIK_POSTGRES_VERSION=16-alpine
 AUTHENTIK_IMAGE=ghcr.io/goauthentik/server
-CURRENT_AUTHENTIK_TAG=2025.8.4
+CURRENT_AUTHENTIK_VERSION=2025.8.4
 
 check_requirements() {
     missed_tools=()
@@ -101,7 +101,7 @@ prompt_for_configuration() {
     if [[ -n "$input" ]]; then
         AUTHENTIK_SECRET_KEY="$input"
     fi
-    AUTHENTIK_TAG=${CURRENT_AUTHENTIK_TAG}
+    AUTHENTIK_VERSION=${CURRENT_AUTHENTIK_VERSION}
     echo ""
     echo "smtp:"
 
@@ -142,7 +142,7 @@ confirm_and_save_configuration() {
         ""
         "# Authentik"
         "AUTHENTIK_IMAGE=${AUTHENTIK_IMAGE}"
-        "AUTHENTIK_TAG=${AUTHENTIK_TAG}"
+        "AUTHENTIK_VERSION=${AUTHENTIK_VERSION}"
         "AUTHENTIK_SECRET_KEY=${AUTHENTIK_SECRET_KEY}"
         ""
         "# SMTP"
