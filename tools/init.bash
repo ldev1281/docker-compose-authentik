@@ -16,9 +16,9 @@ REQUIRED_TOOLS="docker limbo-backup.bash"
 REQUIRED_NETS="proxy-client-authentik"
 BACKUP_TASKS="10-authentik.conf.bash"
 
-AUTHENTIK_POSTGRES_VERSION=16-alpine
-AUTHENTIK_IMAGE=ghcr.io/goauthentik/server
-CURRENT_AUTHENTIK_VERSION=2025.8.4
+AUTHENTIK_POSTGRES_VERSION="16-alpine"
+AUTHENTIK_IMAGE="ghcr.io/goauthentik/server"
+CURRENT_AUTHENTIK_VERSION="2025.8.4"
 
 check_requirements() {
     missed_tools=()
