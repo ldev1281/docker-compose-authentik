@@ -1,3 +1,9 @@
+name: Validate and Release
+env:
+  VERSION_VAR: CURRENT_AUTHENTIK_VERSION
+  DOCKER_REPO: authentik/server
+  ARCHIVE_NAME: ${{ github.event.repository.name }}
+
 on:
   workflow_dispatch:
     inputs:
