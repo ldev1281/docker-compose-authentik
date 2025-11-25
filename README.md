@@ -4,18 +4,34 @@ This repository provides a production-ready Docker Compose configuration for dep
 
 ## Setup Instructions
 
-### 1. Clone the Repository
+### 1. Download and Extract the Release
 
-Clone the project to your server in the `/docker/authentik/` directory:
+Download the packaged release to your server into the `/docker/authentik/` directory and extract it there.
 
-```
+Create the target directory and enter it:
+
+```bash
 mkdir -p /docker/authentik
 cd /docker/authentik
-
-# Clone the main Authentik project
-git clone https://github.com/ldev1281/docker-compose-authentik.git .
 ```
 
+You can either download the **latest** release:
+
+```bash
+curl -fsSL "https://github.com/ldev1281/docker-compose-authentik/releases/latest/download/docker-compose-authentik.tar.gz" -o /tmp/docker-compose-authentik.tar.gz
+tar xzf /tmp/docker-compose-authentik.tar.gz -C /docker/authentik
+rm -f /tmp/docker-compose-authentik.tar.gz
+```
+
+Or download a **specific** release (for example `2025.6.4`):
+
+```bash
+curl -fsSL "https://github.com/ldev1281/docker-compose-authentik/releases/download/2025.6.4/docker-compose-authentik.tar.gz" -o /tmp/docker-compose-authentik.tar.gz
+tar xzf /tmp/docker-compose-authentik.tar.gz -C /docker/authentik
+rm -f /tmp/docker-compose-authentik.tar.gz
+```
+
+After extraction, the contents of the archive should be located directly in `/docker/authentik/` (next to `docker-compose.yml`).
 
 ### 2. Create Docker Network and Set Up Reverse Proxy
 
@@ -31,28 +47,27 @@ This project is designed to work with the reverse proxy configuration provided b
 
 Once Caddy is installed, it will automatically detect the Authentik container via the `caddy-authentik` network and route traffic accordingly.
 
-
 ### 3. Configure and Start the Application
 
 Configuration Variables:
 
-| Variable Name               | Description                                          | Default Value            |
-|-----------------------------|------------------------------------------------------|--------------------------|
-| `AUTHENTIK_POSTGRES_VERSION` | Version of the PostgreSQL image                      | `16-alpine`              |
-| `AUTHENTIK_IMAGE`            | Docker image for Authentik                           | `ghcr.io/goauthentik/server` |
-| `AUTHENTIK_TAG`              | Tag of the Authentik Docker image                    | `2025.6.4`               |
-| `AUTHENTIK_POSTGRES_USER`    | PostgreSQL username for Authentik                    | `authentik`              |
-| `AUTHENTIK_POSTGRES_PASSWORD`| PostgreSQL password for Authentik                    | *(auto-generated)*       |
-| `AUTHENTIK_POSTGRES_DB`      | Name of the PostgreSQL database for Authentik        | `authentik`              |
-| `AUTHENTIK_SECRET_KEY`       | Secret key for Authentik                             | *(auto-generated)*       |
-| `AUTHENTIK_EMAIL__HOST`      | SMTP server host                                     | `localhost`             |
-| `AUTHENTIK_EMAIL__PORT`      | SMTP server port                                     | `25`                     |
-| `AUTHENTIK_EMAIL__USERNAME`  | SMTP username                                        | *(empty)*                |
-| `AUTHENTIK_EMAIL__PASSWORD`  | SMTP password                                        | *(empty)*                |
-| `AUTHENTIK_EMAIL__USE_TLS`   | Enable TLS for SMTP                                  | `false`                  |
-| `AUTHENTIK_EMAIL__USE_SSL`   | Enable SSL for SMTP                                  | `false`                  |
-| `AUTHENTIK_EMAIL__TIMEOUT`   | Timeout for SMTP connections                         | `10`                     |
-| `AUTHENTIK_EMAIL__FROM`      | "From" email address for Authentik                   | `authentik@localhost`    |
+| Variable Name                | Description                                          | Default Value                 |
+|-----------------------------|------------------------------------------------------|-------------------------------|
+| `AUTHENTIK_POSTGRES_VERSION` | Version of the PostgreSQL image                      | `16-alpine`                   |
+| `AUTHENTIK_IMAGE`            | Docker image for Authentik                           | `ghcr.io/goauthentik/server`  |
+| `AUTHENTIK_TAG`              | Tag of the Authentik Docker image                    | `2025.6.4`                    |
+| `AUTHENTIK_POSTGRES_USER`    | PostgreSQL username for Authentik                    | `authentik`                   |
+| `AUTHENTIK_POSTGRES_PASSWORD`| PostgreSQL password for Authentik                    | *(auto-generated)*            |
+| `AUTHENTIK_POSTGRES_DB`      | Name of the PostgreSQL database for Authentik        | `authentik`                   |
+| `AUTHENTIK_SECRET_KEY`       | Secret key for Authentik                             | *(auto-generated)*            |
+| `AUTHENTIK_EMAIL__HOST`      | SMTP server host                                     | `localhost`                   |
+| `AUTHENTIK_EMAIL__PORT`      | SMTP server port                                     | `25`                          |
+| `AUTHENTIK_EMAIL__USERNAME`  | SMTP username                                        | *(empty)*                     |
+| `AUTHENTIK_EMAIL__PASSWORD`  | SMTP password                                        | *(empty)*                     |
+| `AUTHENTIK_EMAIL__USE_TLS`   | Enable TLS for SMTP                                  | `false`                       |
+| `AUTHENTIK_EMAIL__USE_SSL`   | Enable SSL for SMTP                                  | `false`                       |
+| `AUTHENTIK_EMAIL__TIMEOUT`   | Timeout for SMTP connections                         | `10`                          |
+| `AUTHENTIK_EMAIL__FROM`      | "From" email address for Authentik                   | `authentik@localhost`         |
 
 To configure and launch all required services, run the provided script:
 
@@ -71,7 +86,7 @@ Make sure to securely store your `.env` file locally for future reference or red
 
 ### 4. Start the Authentik Service
 
-```
+```bash
 docker compose up -d
 ```
 
@@ -79,13 +94,16 @@ This will start Authentik and make your configured domains available.
 
 ### 5. Verify Running Containers
 
-
 ```bash
 docker ps
 ```
 
-You should see the authentik-app container running.
-To start the initial setup, navigate to https://<your server's IP or hostname>/if/flow/initial-setup/
+You should see the authentik-app container running.  
+To start the initial setup, navigate to:
+
+```text
+https://<your server's IP or hostname>/if/flow/initial-setup/
+```
 
 ### 6. Persistent Data Storage
 
@@ -96,12 +114,11 @@ Authentik and PostgreSQL use the following bind-mounted volumes for data persist
 - `./vol/authentik-app/templates` – Authentik templates
 - `./vol/authentik-redis/data` – Redis data
 
-
 ---
 
 ### Example Directory Structure
 
-```
+```text
 /docker/authentik/
 ├── docker-compose.yml
 ├── tools/
@@ -142,7 +159,6 @@ INCLUDE_PATHS=(
 )
 ```
 
-
 ## License
 
-Licensed under the Prostokvashino License. See [LICENSE](LICENSE) for details
+Licensed under the Prostokvashino License. See [LICENSE](LICENSE) for details.
