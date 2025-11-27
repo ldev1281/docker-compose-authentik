@@ -23,10 +23,10 @@ tar xzf /tmp/docker-compose-authentik.tar.gz -C /docker/authentik
 rm -f /tmp/docker-compose-authentik.tar.gz
 ```
 
-Or download a **specific** release (for example `2025.6.4`):
+Or download a **specific** release (for example `2025.8.4`):
 
 ```bash
-curl -fsSL "https://github.com/ldev1281/docker-compose-authentik/releases/download/2025.6.4/docker-compose-authentik.tar.gz" -o /tmp/docker-compose-authentik.tar.gz
+curl -fsSL "https://github.com/ldev1281/docker-compose-authentik/releases/download/2025.8.4/docker-compose-authentik.tar.gz" -o /tmp/docker-compose-authentik.tar.gz
 tar xzf /tmp/docker-compose-authentik.tar.gz -C /docker/authentik
 rm -f /tmp/docker-compose-authentik.tar.gz
 ```
