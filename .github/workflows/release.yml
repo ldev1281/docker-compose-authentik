@@ -4,7 +4,8 @@ env:
   DOCKER_REPO: authentik/server
   ARCHIVE_NAME: ${{ github.event.repository.name }}
 
-on:  workflow_dispatch:
+on:  
+  workflow_dispatch:
   pull_request:
     branches:
       - main
