@@ -23,26 +23,6 @@ services:
       - authentik-private
 
 
-  authentik-redis:
-    image: redis:alpine
-    container_name: authentik-redis
-    restart: unless-stopped
-
-    command: --save 60 1 --loglevel warning
-
-    healthcheck:
-      test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
-      interval: 10s
-      timeout: 3s
-      retries: 5
-
-    volumes:
-      - ./vol/authentik-redis/data:/data
-
-    networks:
-      - authentik-private
-
-
   authentik-app:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_VERSION}
     container_name: authentik-app
@@ -53,12 +33,9 @@ services:
     depends_on:
       authentik-postgres:
         condition: service_healthy
-      authentik-redis:
-        condition: service_healthy
 
     environment:
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
-      AUTHENTIK_REDIS__HOST: authentik-redis
       AUTHENTIK_POSTGRESQL__HOST: authentik-postgres
       AUTHENTIK_POSTGRESQL__USER: ${AUTHENTIK_POSTGRES_USER}
       AUTHENTIK_POSTGRESQL__NAME: ${AUTHENTIK_POSTGRES_DB}
@@ -93,12 +70,9 @@ services:
     depends_on:
       authentik-postgres:
         condition: service_healthy
-      authentik-redis:
-        condition: service_healthy
 
     environment:
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
-      AUTHENTIK_REDIS__HOST: authentik-redis
       AUTHENTIK_POSTGRESQL__HOST: authentik-postgres
       AUTHENTIK_POSTGRESQL__USER: ${AUTHENTIK_POSTGRES_USER}
       AUTHENTIK_POSTGRESQL__NAME: ${AUTHENTIK_POSTGRES_DB}
