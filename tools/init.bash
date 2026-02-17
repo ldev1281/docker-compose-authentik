@@ -18,7 +18,7 @@ BACKUP_TASKS="10-authentik.conf.bash"
 
 AUTHENTIK_POSTGRES_VERSION="16-alpine"
 AUTHENTIK_IMAGE="ghcr.io/goauthentik/server"
-CURRENT_AUTHENTIK_VERSION="2025.8.5"
+CURRENT_AUTHENTIK_VERSION="2025.10.3"
 
 check_requirements() {
     missed_tools=()

@@ -112,7 +112,6 @@ Authentik and PostgreSQL use the following bind-mounted volumes for data persist
 - `./vol/authentik-postgres/var/lib/postgresql/data` – PostgreSQL database volume
 - `./vol/authentik-app/media` – Authentik runtime data and attachments
 - `./vol/authentik-app/templates` – Authentik templates
-- `./vol/authentik-redis/data` – Redis data
 
 ---
 
@@ -128,9 +127,8 @@ Authentik and PostgreSQL use the following bind-mounted volumes for data persist
 │   │   ├── media/
 │   │   └── templates/
 │   ├── authentik-postgres/
-│   │   └── var/lib/postgresql/data/
-│   └── authentik-redis/
-│       └── data/
+│       └── var/lib/postgresql/data/
+│  
 ├── .env
 ```
 
